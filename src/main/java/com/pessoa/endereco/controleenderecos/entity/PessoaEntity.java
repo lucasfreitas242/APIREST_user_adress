@@ -1,8 +1,13 @@
 package com.pessoa.endereco.controleenderecos.entity;
 
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -17,9 +22,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_pessoa")
 public class PessoaEntity {
 	
+	
+	
 	@JsonInclude(Include.NON_NULL)
 	@Id
 	@Column(name = "pessoa_cpf")
+
 	private Long cpf;
 	
 	@Column(name = "pessoa_nome")
@@ -31,6 +39,11 @@ public class PessoaEntity {
 	
 	@Column(name = "pessoa_nasc")
 	private String nascimento;
+	
+	@OneToMany
+	@JoinColumn(name = "endereco_id")
+	private List<EnderecoEntity> enderecos;
+	
 	
 
 }
